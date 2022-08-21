@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jarvis</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{#  <script src="https://cdn.tailwindcss.com"></script>#}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Jarvis</h1>
+  <form id="connect">
+    <input id="request" type="text" />
+    <input type="submit" value="connect" />
+  </form>
+
+  <h1 id="response"></h1>
+
+  <script>
+      $("#connect").submit(e => {
+          e.preventDefault();
+          axios.post('http://localhost:5000/jarvis', {"data": `${$("#request").val()}`})
+            .then(async (res) => {
+                let response_data = await res.data.response
+                console.log(response_data);
+                $("#response").text(response_data)
+            })
+            .catch((error) => console.log(error));
+      });
+
+  </script>
+</body>
+</html>

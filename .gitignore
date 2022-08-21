@@ -1,0 +1,6 @@
+venv
+cov1
+conv3
+.idea
+__pycache__/
+WikiQACorpus
