@@ -19,15 +19,19 @@ bot = ChatBot(
     ],
 )
 
-# trainer = ListTrainer(bot)
-#
-# dataCollection = []
-# with open('cov1/human_chat.txt', encoding='utf-8') as trainingData:
-#     for line in trainingData:
-#         dataCollection.append(line[9:])
-#
-# print("length", len(dataCollection))
-# trainer.train(dataCollection)
+trainer = ListTrainer(bot)
+
+# trainer.train("chatterbot.corpus.english.greetings")
+
+dataCollection = []
+with open('topical_chat.csv', encoding='utf-8') as trainingData:
+    for line in trainingData:
+        dataSet = line.split(",")
+        dataCollection.append(dataSet[1])
+        # dataCollection.append(dataSet[2])
+
+print(len(dataCollection))
+trainer.train(dataCollection)
 
 
 def processData(data):
